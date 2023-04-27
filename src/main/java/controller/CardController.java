@@ -18,11 +18,11 @@ public class CardController {
 
     public CardController(CardService cardService) {
         this.cardService = cardService;
-        service.put(Commands.ISSUE, this::);
-        service.put(Commands.DEPOSIT_AND_WITHDRAWAL, this::);
-        service.put(Commands.PAYED, this::);
-        service.put(Commands.RECORD, this::);
-        service.put(Commands.RE_ISSUE, this::);
+        service.put(Commands.ISSUE, this::issue);
+        service.put(Commands.DEPOSIT_AND_WITHDRAWAL, this::depositAndWithdrawal);
+        service.put(Commands.PAYED, this::payed);
+        service.put(Commands.RECORD, this::record);
+        service.put(Commands.RE_ISSUE, this::reIssue);
     }
 
     public void run() {
