@@ -1,4 +1,4 @@
-package util;
+package global;
 
 
 import java.sql.Connection;
@@ -16,9 +16,9 @@ public class DBConnector {
         if (connection == null) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                String url = "jdbc:mysql://localhost:3306/데이터베이스명?serverTimezone=UTC&useSSL=false";
-                String user = "사용자명";
-                String password = "비밀번호";
+                String url = "jdbc:mysql://localhost:3306/checkcard?serverTimezone=UTC&useSSL=false";
+                String user = "woori";
+                String password = "woori1234";
                 connection = DriverManager.getConnection(url, user, password);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
