@@ -2,9 +2,10 @@ package controller;
 
 import domain.Commands;
 import domain.dto.CommandDto;
+import domain.dto.IssueDto;
 import global.Retry;
-import main.view.InputView;
-import main.view.OutputView;
+import view.InputView;
+import view.OutputView;
 import service.CardService;
 
 import java.util.HashMap;
@@ -19,8 +20,10 @@ public class CardController {
     public CardController(CardService cardService) {
         this.cardService = cardService;
         service.put(Commands.ISSUE, this::issue);
-        service.put(Commands.DEPOSIT_AND_WITHDRAWAL, this::depositAndWithdrawal);
+        service.put(Commands.DEPOSIT, this::depositAndWithdrawal);
+        service.put(Commands.WITHDRAWAL, this::depositAndWithdrawal);
         service.put(Commands.PAYED, this::payed);
+        service.put(Commands.CANCELED, this::payed);
         service.put(Commands.RECORD, this::record);
         service.put(Commands.RE_ISSUE, this::reIssue);
     }
@@ -38,7 +41,8 @@ public class CardController {
 
     // 카드 발급 API
     public void issue() {
-
+        IssueDto dto = Retry.execute(inputView::readIssue);
+        cardService.issue(dto);
     }
 
     // 카드 입금/출금 API
