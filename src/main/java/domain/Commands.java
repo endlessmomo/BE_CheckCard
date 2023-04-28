@@ -8,11 +8,13 @@ import java.util.Arrays;
 @AllArgsConstructor
 @Getter
 public enum Commands {
-    ISSUE("1"),
-    DEPOSIT_AND_WITHDRAWAL("2"),
+    ISSUE("0"),
+    DEPOSIT("1"),
+    WITHDRAWAL("2"),
     PAYED("3"),
-    RECORD("4"),
-    RE_ISSUE("5"),
+    CANCELED("4"),
+    RECORD("5"),
+    RE_ISSUE("6"),
     QUIT("Q");
 
     private static final String INVALID_COMMAND_MESSAGE = "올바르지 않은 커맨드입니다.";
