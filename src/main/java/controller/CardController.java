@@ -12,10 +12,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CardController {
-    private Map <Commands,Runnable> service = new HashMap <>();
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
-    private CardService cardService;
+    private final Map <Commands,Runnable> service = new HashMap <>();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final CardService cardService;
 
     public CardController(CardService cardService) {
         this.cardService = cardService;
@@ -31,9 +31,10 @@ public class CardController {
     public void run() {
         Commands command = readCommand();
         while (command.isNotQuit()) {
-            try{
+            try {
                 service.get(command).run();
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
+                outputView.printException(e.getMessage());
             }
             command = readCommand();
         }
@@ -41,7 +42,13 @@ public class CardController {
 
     // 카드 발급 API
     public void issue() {
-        IssueDto dto = Retry.execute(inputView::readIssue);
+        IssueDto dto = null;
+        try {
+            dto = Retry.execute(inputView::readIssue);
+        } catch (IllegalArgumentException e){
+            outputView.printException(e.getMessage());
+        }
+
         cardService.issue(dto);
     }
 
@@ -70,7 +77,7 @@ public class CardController {
             CommandDto dto = Retry.execute(inputView::readCommand);
             return Commands.from(dto.getCommand());
         } catch (IllegalArgumentException e) {
-             outputView.printException(e.getMessage());
+            outputView.printException(e.getMessage());
         }
         return null;
     }

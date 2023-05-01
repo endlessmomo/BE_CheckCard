@@ -32,8 +32,8 @@ public class InputValidator {
         }
     }
 
-    public void validateAddressLength(String address){
-        if(address.length() > 255) {
+    public void validateAddressLength(String address) {
+        if (address.length() > 255) {
             throw new IllegalArgumentException(("주소는 최대 255글자까지 작성하실 수 있씁니다."));
         }
     }

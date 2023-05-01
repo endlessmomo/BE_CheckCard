@@ -27,7 +27,7 @@ public class InputView {
         return new IssueDto(userInfo.toUpperCase(), isWoori);
     }
 
-    public boolean isWoori(){
+    public boolean isWoori() {
         Print.checkWoori();
 
         return sc.nextLine().toUpperCase().equals("Y");

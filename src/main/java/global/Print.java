@@ -33,7 +33,7 @@ public class Print {
         System.out.print(PURPLE + "정보를 입력해주세요 : ");
     }
 
-    public static void checkWoori(){
-        System.out.print( "우리 계열사 직원이십니까? (Y/N) : ");
+    public static void checkWoori() {
+        System.out.print("우리 계열사 직원이십니까? (Y/N) : ");
     }
 }
